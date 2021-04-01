@@ -11,9 +11,18 @@ function Init(){
     names.forEach(function(name) {
         dropdown.append("option").text(name).property("value")})
     var samplesInit= data.samples[0].sample_values
-    var otuInit = data.samples[0].otu_labels
+    var otuInit = data.samples[0].otu_id
     console.log(samplesInit)
     console.log(otuInit)
+
+    var trace1= {
+        x:samplesInit,
+        y:otuInit,
+        type: "bar", 
+        orientation: 'h'
+    }
+    var data = [trace1]
+    Plotly.newPlot("bar", data)
     })}
 
 // handling change
