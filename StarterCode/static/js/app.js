@@ -1,26 +1,5 @@
 var dropdown = d3.select("#selDataset");
 
-
-// function Init(){
-//     d3.json("samples.json").then((data)=> {
-//             console.log(data)
-
-//     var names = data.names
-//     console.log(names)
-
-//     // var otuID = data.samples.out_ids
-//     // console.log(otuID)
-//     names.forEach(function(name) {
-    
-//     dropdown.append("option").text(name).property("value")})
-
-//     var filteredData= data.samples.filter(id => id.id ==="940")
-//         // var otuTest = filteredData.map(id=>otu_ids)
-//     var filter = filteredData.map(sample=>sample.otu_ids)
-//     console.log(filter)
-//     })}
-//     Init()
-// handling change
 d3.selectAll("#selDataset").on("change", getData )
 function getData(){
 //Reading in samples.json file
@@ -37,14 +16,24 @@ dropdown.append("option").text(name).property("value")})
 var dropdownMenu = d3.select("#selDataset");
 var selection = dropdownMenu.property("value");
 
-//Creating list
-var list = d3.select("#sample-metadata").append("ul")
-
-//Getting otu IDS and Demographic 
-var filteredData= data.samples.filter(id => id.id === selection)
+//getting Demographic data
 var filteredDemo=data.metadata.filter(meta=>meta.id.toString() === selection)
-console.log(filteredData)
 console.log(filteredDemo)
+//Creating list
+var list = d3.select("#sample-metadata")
+list.html("")
+list.append("h5").text(`ID: ${selection}`)
+list.append("h5").text(`Gender:${filteredDemo[0].gender}`);
+list.append("h5").text(`Ethnicity:${filteredDemo[0].ethnicity} `);
+list.append("h5").text(`Age:${filteredDemo[0].age} `);
+list.append("h5").text(`Location:${filteredDemo[0].location} `);
+list.append("h5").text(`bbtype:${filteredDemo[0].bbtype}`);
+list.append("h5").text(`wfreq: ${filteredDemo[0].wfreq}`);
+
+
+//Getting otu IDS 
+var filteredData= data.samples.filter(id => id.id === selection)
+console.log(filteredData)
 
 var filteredID = filteredData.map(id=>id.otu_ids)
 console.log(filteredID)
