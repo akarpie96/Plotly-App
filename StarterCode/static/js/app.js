@@ -44,15 +44,16 @@ var filteredSample = filteredData.map(sample=>sample.sample_values)
 console.log(filteredSample)
 
 // Slicing 10 values from arrays
-var slicedID = filteredID[0].slice(0,10)
-
-var slicedSample = filteredSample[0].slice(0,10)
+var slicedID = filteredID[0].slice(0,10).reverse()
+var labels = slicedID.map(d=>"OTU " + d)
+console.log(labels)
+var slicedSample = filteredSample[0].slice(0,10).reverse()
 console.log(slicedID)
 console.log(slicedSample)
 
 var trace1={
     x: slicedSample,
-    y: slicedID, 
+    y: labels, 
     text: slicedID, 
     type: "bar",
     orientation: "h"
@@ -62,12 +63,12 @@ var trace1={
 var data = [trace1];
 
 var layout = {
-    title: "Belly Button", 
+    title: "Top 10 OTU ID's", 
     margin: {
         l:100,
         r:100,
-        t:100,
-        b:100
+        t:30,
+        b:20
     }
 }
 
