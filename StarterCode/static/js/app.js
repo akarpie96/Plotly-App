@@ -72,10 +72,32 @@ var layout = {
     }
 }
 
+
+
 Plotly.newPlot("bar", data,layout)
 
 
-
+// Bubble Chart 
+var trace2 = {
+    x: labels,
+    y: slicedSample,
+    mode: 'markers',
+    marker: {
+      size: slicedSample,
+      color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)','rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(93, 164, 214)', 'rgb(255, 144, 14)']
+    }
+  };
+  
+  var data1 = [trace2];
+  
+  var layout = {
+    title: 'Marker Size',
+    showlegend: false,
+    height: 600,
+    width: 600
+  };
+  
+  Plotly.newPlot('bubble', data1, layout);
 
 })}
 
